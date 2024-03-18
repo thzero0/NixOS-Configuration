@@ -33,6 +33,22 @@ config = {
     };
 };
 
+  boot.loader.systemd-boot.enable = false;
+  boot.loader = {
+	efi = {
+		canTouchEfiVariables = false;
+		efiSysMountPoint = "/boot";
+	};
+	grub = {
+		efiInstallAsRemovable = true;
+		device = "nodev";
+		efiSupport = true;
+		enable = true;
+		useOSProber = true;
+		configurationLimit = 5;
+	};
+ };
+
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
   nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
@@ -51,13 +67,13 @@ config = {
 
   nix.settings = {
     # Enable flakes and new 'nix' command
-    experimental-features = "nix-command flakes";
+    experimental-features = ["nix-command" "flakes"];
     # Deduplicate and optimize nix store
     auto-optimise-store = true;
   };
 
 
-
+  
   programs.hyprland.enable = true;
   programs.fish.enable = true;
   xdg.portal.wlr.enable = true;
@@ -66,10 +82,12 @@ config = {
   console.keyMap = "br-abnt2";
   hardware.opengl.enable = true;
   services.xserver = {
-	xkb.layout = "br-abnt2";
+	layout = "br-abnt2";
 	libinput.enable = true;
 	videoDrivers = ["nvidia"];
   };
+
+  
 
   environment.systemPackages = with pkgs; [
 	vim
@@ -81,21 +99,11 @@ config = {
 
   
   networking.hostName = "BlackHole";
+  networking.networkmanager.enable = true;
 
-  boot.loader.systemd-boot.enable = false;
-  boot.loader = {
-	efi = {
-		canTouchEfiVariables = false;
-		efiSysMountPoint = "/boot";
-	};
-	grub = {
-		efiInstallAsRemovable = true;
-		device = "nodev";
-		efiSupport = true;
-		enable = true;
-		useOSProber = true;
-	};
- };
+  services.logind.lidSwitch = "ignore";
+
+
 
   users.users = {
     thzero = {
@@ -103,7 +111,7 @@ config = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [];
       extraGroups = ["wheel" "networkmanager"];
-
+     packages = with pkgs; [home-manager];
     };
   };
 
@@ -114,7 +122,7 @@ config = {
       PasswordAuthentication = false;
     };
   };
-
+ 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }
