@@ -32,7 +32,6 @@
 	firefox
 	tree
 	kitty
-	acpi
 	ranger
  ];
 
