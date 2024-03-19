@@ -43,7 +43,6 @@ config = {
 		efiInstallAsRemovable = false;
 		device = "nodev";
 		efiSupport = true;
-		default = "saved";
 		enable = true;
 		useOSProber = true;
 		configurationLimit = 5;
@@ -94,7 +93,7 @@ config = {
   console.keyMap = "br-abnt2";
   hardware.opengl.enable = true;
   services.xserver = {
-	layout = "br-abnt2";
+	xkb.layout = "br-abnt2";
 	libinput.enable = true;
 	videoDrivers = ["nvidia"];
   };
