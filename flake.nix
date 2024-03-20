@@ -8,7 +8,8 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
+    
+    ags.url = "github:Aylur/ags";
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
 
@@ -23,6 +24,7 @@
     home-manager,
     ...
   } @inputs: let
+
     inherit (self) outputs;
   in {
     # NixOS configuration entrypoint
