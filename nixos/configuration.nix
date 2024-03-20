@@ -5,60 +5,19 @@
 {
 
   imports = [
-    # If you want to use modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
     ./hardware-configuration.nix
-];
+    ./bootConfs.nix
+  ];
 
-
-
-nixpkgs = {
-    overlays = [
-      # If you want to use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-];
+  nixpkgs = {
+    overlays = [];
     
 
-config = {
+    config = {
       allowUnfree = true;
     };
-};
+  };
 
-  boot.loader.systemd-boot.enable = false;
-  boot.loader = {
-	efi = {
-		canTouchEfiVariables = true;
-		efiSysMountPoint = "/boot";
-	};
-	grub = {
-		efiInstallAsRemovable = false;
-		device = "nodev";
-		efiSupport = true;
-		enable = true;
-		useOSProber = true;
-		configurationLimit = 5;
-		extraEntries =
-		''
-			menuentry "Arch Linux" {
-				#set root=/dev/nvme0n1p7
-				insmod part_gpt
-				insmod ext2
-				search --no-floppy --fs-uuid --set root= 3b8e6f07-4221-48cf-b7ca-8600c5bf5cf4
-				linux /boot/vmlinuz-linux root=UUID=3b8e6f07-4221-48cf-b7ca-8600c5bf5cf4 rw nowatchdog nvme_load=YES resume=UUID=62087949-04fa-49a9-aef2-fc46c2ab884a loglevel=3
-				initrd /boot/intel-ucode.img /boot/initramfs-linux.img
-		}
-		'';
-	};
- };
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
@@ -101,9 +60,9 @@ config = {
   
 
   environment.systemPackages = with pkgs; [
-	vim
-	wget
-	git
+    vim
+	  wget
+	  git
   ];
 
 
