@@ -120,6 +120,7 @@ config = {
     thzero = {
       initialPassword = "1234";
       isNormalUser = true;
+      shell = pkgs.fish;
       openssh.authorizedKeys.keys = [];
       extraGroups = ["wheel" "networkmanager"];
      packages = with pkgs; [home-manager];

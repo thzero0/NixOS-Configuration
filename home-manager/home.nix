@@ -9,7 +9,6 @@
 }: {
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModule
 
   ];
 
@@ -35,8 +34,41 @@
 	ranger
 	kitty
 	neofetch
+	ags
+	(nerdfonts.override {fonts = 
+	[
+	"RobotoMono"
+	"FiraCode"
+	];})
  ];
+  
+  programs.fish = {
+  	enable = true;
+  	interactiveShellInit = ''
+		fish_add_path --append ~/.local/bin
+		'';
 
+	functions = {
+		ranger = ''
+			set tempfile (mktemp -t tmp.XXXXXX)
+        		command ranger --choosedir=$tempfile $argv
+        		set return_value $status
+
+       	 		if test -s $tempfile
+                		set ranger_pwd (cat $tempfile)
+                		if test -n $ranger_pwd -a -d $ranger_pwd
+                        		builtin cd -- $ranger_pwd
+                		end
+        		end
+
+        		command rm -f -- $tempfile
+        		return $return_value
+		'';
+		fish_greeting = "echo ❄️  Welcome, its (set_color cyan; date +%T)";
+		switchConf = "cd /home/thzero/nixos-config & sudo nixos-rebuild switch --flake .#BlackHole";
+		switchHome = "cd /home/thzero/nixos-config & home-manager switch --flake .#thzero@BlackHole";
+	};
+  };
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
