@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ./bootConfs.nix
+    ./hyprland.nix
   ];
 
 
@@ -33,8 +34,7 @@
   environment.etc = lib.mapAttrs' (name: value: {name = "nix/path/${name}"; value.source = value.flake;}) config.nix.registry;
 
 
-  # programs
-  programs.hyprland.enable = true;
+  # Fish
   programs.fish.enable = true;
   
   # xdg

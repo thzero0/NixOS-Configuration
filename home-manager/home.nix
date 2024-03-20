@@ -34,7 +34,6 @@
 	ranger
 	kitty
 	neofetch
-	ags
 	(nerdfonts.override {fonts = 
 	[
 	"RobotoMono"
