@@ -14,6 +14,7 @@
     ags.url = "github:Aylur/ags";
     astal.url = "github:Aylur/astal";
     matugen.url = "github:InioX/matugen";
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
 

@@ -40,10 +40,5 @@ export default () => PanelButton({
     on_clicked: action.bind(),
     child: Widget.Box([
         Spinner(),
-        Widget.Label({
-            class_name: label.colored.bind().as(c => c ? "colored" : ""),
-            visible: label.label.bind().as(v => !!v),
-            label: label.label.bind(),
-        }),
     ]),
 })

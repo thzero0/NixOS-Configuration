@@ -56,7 +56,7 @@ const AppItem = (app: Application) => {
         class_name: "app-item",
         attribute: { app },
         child: Widget.Box({
-            children: [appicon, textBox],
+            children: [appicon],
         }),
         on_clicked: () => {
             App.closeWindow("launcher")

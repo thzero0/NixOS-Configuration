@@ -12,7 +12,7 @@ try {
     matugen()
     lowBattery()
     notifications()
-    hyprland()
+    //hyprland()
     swww()
 } catch (error) {
     logError(error)
