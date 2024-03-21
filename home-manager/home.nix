@@ -39,6 +39,15 @@
 	"RobotoMono"
 	"FiraCode"
 	];})
+
+  icon-library
+  libnotify
+  morewaita-icon-theme
+  gnome.adwaita-icon-theme
+  papirus-icon-theme
+  qogir-icon-theme
+  pulseaudio
+  adw-gtk3
  ];
   
   programs.fish = {
