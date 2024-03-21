@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, ... }: {
+{ pkgs, inputs, config, asztal, ... }: {
   services.xserver.displayManager.startx.enable = true;
 
   programs.hyprland = {
@@ -71,6 +71,17 @@
       gnome-online-accounts.enable = true;
     };
   };
+  
+  services.greetd = {
+    enable = true;
+    settings.default_session.command = pkgs.writeShellScript "greeter" ''
+      export XKB_DEFAULT_LAYOUT=${config.services.xserver.xkb.layout}
+      export XCURSOR_THEME=Qogir
+         '';
+  };
+
+  # ${asztal}/bin/greeter
+
 
 
   systemd.tmpfiles.rules = [
@@ -91,5 +102,5 @@
     cp $BG $CACHE/background
     chown greeter:greeter $CACHE/background
   '';
-*/
+  */
 }

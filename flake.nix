@@ -1,6 +1,8 @@
 {
   description = "Your new nix config";
 
+
+  # inputs
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -14,35 +16,47 @@
     matugen.url = "github:InioX/matugen";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @inputs: let
 
-    inherit (self) outputs;
-  in {
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {  
+
+  #outputs = {self, nixpkgs, home-manager, ... } @inputs: let
+  outputs = inputs@{ self, home-manager, nixpkgs, ... }: 
+  {
+    packages.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.callPackage ./ags {inherit inputs;};      
+  
+    # nix configuration                                                       #in {
+    nixosConfigurations = {
+
+      # setting asztal
       BlackHole = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        # > Our main nixos configuration file <
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+          asztal = self.packages.x86_64-linux.default;
+        };
         modules = [./nixos/configuration.nix];
       };
     };
 
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
+      # setting my main config file
+      #BlackHole = nixpkgs.lib.nixosSystem {
+      #  specialArgs = {inherit inputs;};
+        # > Our main nixos configuration file <
+      #  modules = [./nixos/configuration.nix];
+      #  };
+      #};
+
     homeConfigurations = {
-      # FIXME replace with your username@hostname
       "thzero@BlackHole" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs;};
-        # > Our main home-manager configuration file <
+        extraSpecialArgs = { 
+          inherit inputs;
+          asztal = self.packages.x86_64-linux.default;
+        };
+       # > Our main home-manager configuration file <
         modules = [./home-manager/home.nix];
       };
     };
   };
 }
+
+
