@@ -39,6 +39,7 @@
   programs.fish.enable = true;
   
   # xdg
+  xdg.portal = {enable = true; extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; };
   xdg.portal.wlr.enable = true;
  
   # audio
@@ -86,8 +87,9 @@
 
   # services
   services = {
-    xserver = {   
-	    xkb.layout = "br-abnt2";
+    xserver = {
+      enable = true;
+	    xkb.layout = "br";
 	    libinput.enable = true;
     };
     openssh = {  
@@ -98,6 +100,10 @@
       };
     };
   };
+
+
+  # timeZone
+  time.timeZone = "America/Sao_Paulo";
 
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

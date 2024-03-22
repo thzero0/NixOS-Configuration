@@ -43,6 +43,7 @@
     adw-gtk3
     zip
     unzip
+    spotify
  ];
 
   # Enable home-manager and git
