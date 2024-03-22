@@ -8,6 +8,7 @@
     ./nvim.nix
     ./fish.nix
     ./kitty.nix
+    ./lightdm.nix
   ];
 
 
@@ -26,27 +27,23 @@
 
   programs.neovim.enable = true;
   home.packages = with pkgs; [
-	firefox
-	tree
-	alacritty
-	ranger
-	kitty
-	neofetch
-	(nerdfonts.override {fonts = 
-	[
-	"RobotoMono"
-	"FiraCode"
-	];})
-  icon-library
-  libnotify
-  morewaita-icon-theme
-  gnome.adwaita-icon-theme
-  papirus-icon-theme
-  qogir-icon-theme
-  pulseaudio
-  adw-gtk3
-  zip
-  unzip
+	  firefox
+	  tree
+	  alacritty
+	  ranger
+	  kitty
+	  neofetch
+	  (nerdfonts.override {fonts = ["RobotoMono" "FiraCode" ];})
+    icon-library
+    libnotify
+    morewaita-icon-theme
+    gnome.adwaita-icon-theme
+    papirus-icon-theme
+    qogir-icon-theme
+    pulseaudio
+    adw-gtk3
+    zip
+    unzip
  ];
 
   # Enable home-manager and git
