@@ -1,16 +1,4 @@
-{pkgs, inputs, ...}:
-
-let 
-
-hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
-#plugins = inputs.hyprland-plugins.packages.${pkgs.system};
-
-#playerctl = "${pkgs.playerctl}/bin/playerctl";
-#brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-#pactl = "${pkgs.pulseaudio}/bin/pactl";
-
-in
-{
+{pkgs, inputs, ...}: {
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -102,10 +90,10 @@ in
         "$mainMod, Return, exec, kitty"
         "$mainMod, Q, killactive"
         "$mainMod, M, exit"
-        "$mainMod, E, exec, dolphin"
+        #"$mainMod, E, exec, dolphin"
         "$mainMod, V, togglefloating"
-        "$mainMod, R, exec, wofi --show drun"
-        "$mainMod, P, pseudo"
+        #"$mainMod, R, exec, wofi --show drun"
+        #"$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
         "$mainMod, B, exec, firefox"
 
@@ -113,7 +101,7 @@ in
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus"
+        "$mainMod, down, movefocus, d"
 
         # switch workspaces with mainMod + [0-9]
         "$mainMod, 1, workspace, 1"
