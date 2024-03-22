@@ -7,6 +7,7 @@
     ./hyprland.nix
     ./nvim.nix
     ./fish.nix
+    ./kitty.nix
   ];
 
 
