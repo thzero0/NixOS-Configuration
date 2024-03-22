@@ -1,9 +1,8 @@
-{
-  
-  programs.neovim.enable = true;
 
+{pkgs, ...}:
+{
   xdg = {
-    configFile.nvim.source = ../nvim
+    configFile.nvim.source = ../nvim;
   };
 
   home.sessionVariables = {
@@ -11,7 +10,9 @@
     VISUAL = "nvim";
   };
 
-  extraPackages = with pkgs; [
+  programs.neovim = {
+    enable = true;
+    extraPackages = with pkgs; [
       git
       nil
       lua-language-server
@@ -24,5 +25,6 @@
       ripgrep
       fd
       fzf
-  ];
+    ];
+  };
 }
