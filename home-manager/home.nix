@@ -5,6 +5,7 @@
   imports = [
     ./ags.nix
     ./hyprland.nix
+    ./nvim.nix
     ./fish.nix
   ];
 
