@@ -88,7 +88,6 @@
     xserver = {      
 	    xkb.layout = "br-abnt2";
 	    libinput.enable = true;
-	    videoDrivers = ["nvidia"];
     };
     openssh = {  
       enable = true;

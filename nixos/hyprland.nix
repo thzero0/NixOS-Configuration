@@ -71,7 +71,8 @@
       gnome-online-accounts.enable = true;
     };
   };
-  
+ 
+ /*
   services.greetd = {
     enable = true;
     settings.default_session.command = pkgs.writeShellScript "greeter" ''
@@ -79,7 +80,7 @@
       export XCURSOR_THEME=Qogir
          '';
   };
-
+*/
   # ${asztal}/bin/greeter
 
 

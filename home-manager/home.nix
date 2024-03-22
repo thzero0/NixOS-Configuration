@@ -10,6 +10,7 @@
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     ./ags.nix
+    ./hyprland.nix
   ];
 
   nixpkgs = {
@@ -48,6 +49,8 @@
   qogir-icon-theme
   pulseaudio
   adw-gtk3
+  zip
+  unzip
  ];
   
   programs.fish = {
