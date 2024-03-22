@@ -8,7 +8,6 @@
     ./nvim.nix
     ./fish.nix
     ./kitty.nix
-    ./lightdm.nix
   ];
 
 

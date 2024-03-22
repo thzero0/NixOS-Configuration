@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     ./bootConfs.nix
     ./hyprland.nix
+    ./lightdm.nix
   ];
 
 
@@ -85,7 +86,7 @@
 
   # services
   services = {
-    xserver = {      
+    xserver = {   
 	    xkb.layout = "br-abnt2";
 	    libinput.enable = true;
     };
